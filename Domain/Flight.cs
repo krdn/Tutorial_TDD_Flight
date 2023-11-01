@@ -1,4 +1,5 @@
 ﻿
+
 namespace Domain;
 
 public class Flight
@@ -28,5 +29,19 @@ public class Flight
 
         return null;
 
+    }
+
+    public object? CancelBooking(string passengerEmail, int numberOfSeats)
+    {
+        if (_bookingList.All(x => x.Email != passengerEmail))
+            return new BookingNotFoundError();
+
+        RemainingNUmberOfSeats += numberOfSeats;
+
+        // 예약을 취소하면 예약 목록에서 삭제한다.
+        // Database 엔티티 업데이트 여부를 위한 테스트 필요
+        _bookingList.RemoveAll(x => x.Email == passengerEmail);
+
+        return null;
     }
 }
