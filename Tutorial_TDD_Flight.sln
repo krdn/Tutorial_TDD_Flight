@@ -3,16 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34219.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flight", "Flight\Flight.csproj", "{8A0E5908-81DE-4650-8146-01D0F9687159}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flight", "Flight\Flight.csproj", "{8A0E5908-81DE-4650-8146-01D0F9687159}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Tests", "Domain.Tests\Domain.Tests.csproj", "{56CA1CA1-F526-4998-B8BE-AFA79EB4B68A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Tests", "Domain.Tests\Domain.Tests.csproj", "{56CA1CA1-F526-4998-B8BE-AFA79EB4B68A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{2B373CB9-ED1A-4FF5-945B-C4688A6D5056}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{2B373CB9-ED1A-4FF5-945B-C4688A6D5056}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "솔루션 항목", "솔루션 항목", "{BD253E27-1006-4FDE-82A0-B2393871EBFC}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Test", "Application.Test\Application.Test.csproj", "{E7975D7B-34EF-4810-93E8-6ECD21B2B489}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Applicaton", "Applicaton\Applicaton.csproj", "{A90A0D2E-AB5A-451B-9F9A-E47128F4809D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{62FA9A13-977D-4649-A4F0-07C3762A18D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +38,18 @@ Global
 		{2B373CB9-ED1A-4FF5-945B-C4688A6D5056}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B373CB9-ED1A-4FF5-945B-C4688A6D5056}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B373CB9-ED1A-4FF5-945B-C4688A6D5056}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7975D7B-34EF-4810-93E8-6ECD21B2B489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7975D7B-34EF-4810-93E8-6ECD21B2B489}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7975D7B-34EF-4810-93E8-6ECD21B2B489}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7975D7B-34EF-4810-93E8-6ECD21B2B489}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A90A0D2E-AB5A-451B-9F9A-E47128F4809D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A90A0D2E-AB5A-451B-9F9A-E47128F4809D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A90A0D2E-AB5A-451B-9F9A-E47128F4809D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A90A0D2E-AB5A-451B-9F9A-E47128F4809D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62FA9A13-977D-4649-A4F0-07C3762A18D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62FA9A13-977D-4649-A4F0-07C3762A18D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62FA9A13-977D-4649-A4F0-07C3762A18D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62FA9A13-977D-4649-A4F0-07C3762A18D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

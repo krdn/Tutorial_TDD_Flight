@@ -4,14 +4,17 @@ namespace Domain;
 
 public class Flight
 {
-    private List<Booking> _bookingList = new();
+    List<Booking> _bookingList = new();
 
     // 외부에서 변경하지 못하도록 설정함.
     public IEnumerable<Booking> BookingList => _bookingList;
 
-    //public List<Booking> BookingList { get; set; } = new List<Booking>();
-
     public int RemainingNUmberOfSeats { get; set; }
+
+    public Guid Id { get; set; }
+
+    [Obsolete("For EF")]
+    Flight() { }
 
     public Flight(int seatCapacity)
     {
