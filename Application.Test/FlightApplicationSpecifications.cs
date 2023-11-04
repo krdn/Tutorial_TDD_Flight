@@ -9,23 +9,26 @@ namespace Application.Test;
 
 public class FlightApplicationSpecifications
 {
+    readonly Entities entities = new Entities(new DbContextOptionsBuilder<Entities>()
+        .UseInMemoryDatabase("Flights")
+        .Options);
+
+    readonly BookingService bookingService;
+
+    public FlightApplicationSpecifications()
+    {
+            bookingService = new BookingService(entities: entities);
+    }
+
     [Theory(DisplayName = "부킹 여부 확인")]
     [InlineData("m@m.com", 2)]
     [InlineData("a@a.com", 2)]
     public void Books_flights(string passengerEmail, int numberOfSeats)
     {
         // Given
-        var options = new DbContextOptionsBuilder<Entities>()
-            .UseInMemoryDatabase("Flights")
-            .Options;
-
-        var entities = new Entities(options);
-
         var flight = new Flight(3);
 
         entities.Flights.Add(flight);
-
-        var bookingService = new BookingService(entities: entities);
 
         // When
         bookingService.Book(new BookDto(
@@ -36,60 +39,34 @@ public class FlightApplicationSpecifications
             new BookingRm(passengerEmail, numberOfSeats)
             );
     }
-}
 
-public class BookingService
-{
-    public Entities Entities { get; set; }
-
-    public BookingService(Entities entities)
+    [Theory(DisplayName = "부킹 취소")]
+    [InlineData(3)]
+    [InlineData(10)]
+    public void Cancels_booking(int initialCapacity)
     {
-        Entities = entities;
-    }
+        // Given
+        var flight = new Flight(initialCapacity);
+        entities.Flights.Add(flight);
 
-    public void Book(BookDto bookDto)
-    {
-        var flight = Entities.Flights.Find(bookDto.FlightId);
-        flight.Book(bookDto.PassengerEmail, bookDto.NumberOfSeats);
-        Entities.SaveChanges();
-    }
+        bookingService.Book(new BookDto(
+            flightId: flight.Id,
+            passengerEmail: "m@m.com",
+            numberOfSeats: 2)
+        );
 
-    public IEnumerable<BookingRm> FindBookings(Guid flightId)
-    {
-        return Entities.Flights
-            .Find(flightId)
-            .BookingList
-            .Select(x => new BookingRm(
-                x.Email, 
-                x.NumberOfSeats)
+        // When
+        bookingService.CancelBooking(
+            new CancelBookingDto(
+                flightId: flight.Id,
+                passengerEmail: "m@m.com",
+                numberOfSeats: 2)
             );
 
-    }
-}
+        // Then : 취소 후 예약 좌석이 복원되어야 한다.
+        bookingService.GetRemainingNumberOfSeatsFor(flight.Id)
+            .Should().Be(initialCapacity);
 
 
-public class BookDto
-{
-    public Guid FlightId { get; set; }
-    public string PassengerEmail { get; set; }
-    public int NumberOfSeats { get; set; }
-
-    public BookDto(Guid flightId, string passengerEmail, int numberOfSeats)
-    {
-        FlightId = flightId;
-        PassengerEmail = passengerEmail;
-        NumberOfSeats = numberOfSeats;
-    }
-}
-
-public class BookingRm
-{
-    public string PassengerEmail { get; set; }
-    public int NumberOfSeats { get; set; }
-
-    public BookingRm(string passengerEmail, int numberOfSeats)
-    {
-        PassengerEmail = passengerEmail;
-        NumberOfSeats = numberOfSeats;
     }
 }

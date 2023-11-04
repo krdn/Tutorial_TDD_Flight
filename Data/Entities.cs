@@ -11,8 +11,6 @@ public class Entities : DbContext
 
     public Entities(DbContextOptions options) : base(options)
     {
-
-
         //Flights.Add(new Flight(3));
     }
 
